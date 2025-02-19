@@ -72,7 +72,7 @@ function Deals() {
               <button className="bg-[#FFE7D6] p-[12px] rounded-sm">
                 <FavoriteBorderIcon />
               </button>
-              <button className="uppercase bg-[#FA8232] p-[12px] rounded-sm text-[14px] text-white items-center flex font-bold shadow-2xl max-h-[48px]">
+              <button className="uppercase bg-[#FA8232] p-[12px] rounded-sm xl:text-[14px] sm:text-[12px] text-white items-center flex font-bold shadow-2xl max-h-[48px]">
                 <ShoppingCartIcon className="mr-[4px]" />
                 Add to cart
               </button>

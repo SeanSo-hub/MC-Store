@@ -2,6 +2,7 @@ import NavBar from "./components/Header/NavBar";
 import Hero from "./components/Main/Hero";
 import Feature from "./components/Main/Feature";
 import Deals from "./components/Main/Deals";
+import Newsletter from "./components/Main/Newsletter";
 
 export default function index() {
   return (
@@ -14,6 +15,7 @@ export default function index() {
           <Hero />
           <Feature />
           <Deals />
+          <Newsletter />
         </main>
       </main>
     </div>

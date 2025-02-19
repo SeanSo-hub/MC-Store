@@ -13,7 +13,7 @@ function Newsletter() {
         <p className="w-full sm:w-[536px] text-sm sm:text-base text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
           placeat, reprehenderit, quibusdam blanditiis labore aliquam deleniti
-          sit.
+          it.
         </p>
         <div className="flex gap-4 justify-center items-center w-full sm:w-[624px] bg-white rounded-[3px]">
           <form

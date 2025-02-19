@@ -1,3 +1,11 @@
+The design is inspired from Clicon - eCommerce Marketplace Website Figma Template (Community)
+
+https://www.figma.com/design/sdLOi4CayjA7bcBNfWIB3T/Clicon---eCommerce-Marketplace-Website-Figma-Template-(Community)-(Community)?node-id=36-5&p=f&t=dz6v479Jod4HyIbN-0
+
+#Screenshot
+
+![alt text](image.png)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

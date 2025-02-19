@@ -1,3 +1,7 @@
+The Design is inspired from Clicon - eCommerce Marketplace Website Figma Template
+
+https://www.figma.com/design/sdLOi4CayjA7bcBNfWIB3T/Clicon---eCommerce-Marketplace-Website-Figma-Template-(Community)-(Community)?node-id=279-19819&p=f&t=hf7iHrx1zOUWqwTj-0
+
 #Screenshot
 
 ![image](https://github.com/user-attachments/assets/e8a10142-feb9-4f60-b3fe-1343182c5628)

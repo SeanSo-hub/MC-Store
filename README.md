@@ -4,7 +4,7 @@ https://www.figma.com/design/sdLOi4CayjA7bcBNfWIB3T/Clicon---eCommerce-Marketpla
 
 #Screenshot
 
-![alt text](image.png)
+![alt text](image-1.png)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

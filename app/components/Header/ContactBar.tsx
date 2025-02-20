@@ -9,34 +9,50 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const ContactBar = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 my-4">
-      <div className="hidden sm:flex items-center gap-6 text-[#475156]">
-        <button className="flex items-center gap-2 bg-[#1B6392] text-white px-4 py-2 rounded">
-          <MenuIcon />
-          <span>All Categories</span>
-          <KeyboardArrowDownIcon />
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 hidden sm:block">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[#475156]">
+        <button className="flex items-center gap-2 bg-[#1B6392] text-white px-4 py-2 rounded-md hover:bg-[#155a83] transition-colors w-full sm:w-auto">
+          <MenuIcon className="w-5 h-5" />
+          <span className="text-sm sm:text-base">All Categories</span>
+          <KeyboardArrowDownIcon className="w-5 h-5" />
         </button>
 
-        <a href="#" className="hover:text-[#1B6392]">
-          <RoomIcon className="hover:text-[#1B6392]" />
-          Track Order
-        </a>
-        <a href="#" className="hover:text-[#1B6392]">
-          <CompareArrowsIcon className="hover:text-[#1B6392]" />
-          Compare
-        </a>
-        <a href="#" className="hover:text-[#1B6392]">
-          <SupportAgentIcon className="hover:text-[#1B6392]" />
-          Customer support
-        </a>
-        <a href="#" className="hover:text-[#1B6392]">
-          <InfoIcon className="hover:text-[#1B6392]" />
-          Need help
-        </a>
-        <div className="flex-1"></div>
-        <a href="#" className="hover:text-[#1B6392]">
-          <LocalPhoneIcon className="hover:text-[#1B6392]" />
-          +63 992 492 7865
+        <div className="hidden sm:flex items-center gap-4 lg:gap-6 flex-wrap justify-center">
+          <a
+            href="#"
+            className="flex items-center gap-2 hover:text-[#1B6392] transition-colors"
+          >
+            <RoomIcon className="w-5 h-5" />
+            <span className="text-sm">Track Order</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-2 hover:text-[#1B6392] transition-colors"
+          >
+            <CompareArrowsIcon className="w-5 h-5" />
+            <span className="text-sm">Compare</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-2 hover:text-[#1B6392] transition-colors"
+          >
+            <SupportAgentIcon className="w-5 h-5" />
+            <span className="text-sm">Customer Support</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-2 hover:text-[#1B6392] transition-colors"
+          >
+            <InfoIcon className="w-5 h-5" />
+            <span className="text-sm">Need Help</span>
+          </a>
+        </div>
+        <a
+          href="tel:+639924927865"
+          className="hidden sm:flex items-center gap-2 hover:text-[#1B6392] transition-colors text-sm sm:text-base"
+        >
+          <LocalPhoneIcon className="w-5 h-5" />
+          <span>+63 992 492 7865</span>
         </a>
       </div>
     </div>

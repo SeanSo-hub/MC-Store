@@ -12,19 +12,24 @@ function Deals() {
   return (
     <section className="max-w-7xl mx-auto px-4">
       <div className="flex flex-col">
-        <div className="flex justify-between items-center py-[4px] mb-[24px]">
-          <div className="flex justify-around items-center gap-2">
+        <div className="flex justify-between items-center py-[4px] flex-col md:flex-row mb-[24px] gap-2">
+          <div className="flex flex-col md:flex-row items-center gap-2">
             <h1 className="mr-[24px] font-semibold text-[24px]">Best Deals</h1>
-            <p className="text-[14px]">Deals ends in</p>
-            <p className="bg-[#F3DE6D] px-[12px] py-[6px]">
-              16d : 21h : 57m : 23s
-            </p>
+            <div className="flex justify-center items-center gap-2">
+              <p className="text-[14px]">Deals ends in</p>
+              <p className="bg-[#F3DE6D] px-[12px] py-[6px]">
+                16d : 21h : 57m : 23s
+              </p>
+            </div>
           </div>
-          <div className="flex justify-center items-center">
-            <button className="flex justify-center items-center text-[#2DA5F3]">
+          <div className="flex items-start">
+            <a
+              href=""
+              className="flex items-center gap-2 text-[#2DA5F3] hover:text-[#1d8ad9] transition-colors"
+            >
               <p>Browse All Product</p>
               <ArrowForwardIcon />
-            </button>
+            </a>
           </div>
         </div>
         <div className="grid grid-cols-1 grid-rows-2 mb-4 border sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -72,8 +77,8 @@ function Deals() {
               <button className="bg-[#FFE7D6] p-[12px] rounded-sm">
                 <FavoriteBorderIcon />
               </button>
-              <button className="uppercase bg-[#FA8232] p-[12px] rounded-sm xl:text-[14px] sm:text-[12px] text-white items-center flex font-bold shadow-2xl max-h-[48px]">
-                <ShoppingCartIcon className="mr-[4px]" />
+              <button className="uppercase bg-[#FA8232] w-full p-3 rounded-sm text-white flex justify-center items-center font-bold shadow-2xl max-h-[48px]">
+                <ShoppingCartIcon className="mr-[4px] flex-shrink-0" />
                 Add to cart
               </button>
               <button className="bg-[#FFE7D6] p-[12px] rounded-sm">

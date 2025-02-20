@@ -77,7 +77,7 @@ function Hero() {
                 alt="Pixel"
                 width={312}
                 height={312}
-                className="w-full h-full"
+                className="w-full h-full flex-shrink-0"
               />
             </div>
           </div>

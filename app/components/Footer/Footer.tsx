@@ -124,6 +124,9 @@ function Footer() {
           </div>
         </div>
       </div>
+      <div className="text-center text-[#ADB7BC] py-6 border-t border-[#ADB7BC]">
+        <h1>MC - eCommerce store © 2025. Design by Clicon</h1>
+      </div>
     </footer>
   );
 }

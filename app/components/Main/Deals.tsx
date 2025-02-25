@@ -73,11 +73,11 @@ function Deals() {
               Games built using the Xbox Series X|S development kit showcase
               unparalleled load times, visuals.
             </p>
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex items-center gap-2">
               <button className="bg-[#FFE7D6] p-[12px] rounded-sm">
                 <FavoriteBorderIcon />
               </button>
-              <button className="uppercase bg-[#FA8232] w-full p-3 rounded-sm text-white flex justify-center items-center font-bold shadow-2xl max-h-[48px]">
+              <button className="uppercase bg-[#FA8232] w-full p-3 rounded-sm text-white flex justify-center items-center font-bold text-sm shadow-2xl max-h-12">
                 <ShoppingCartIcon className="mr-[4px] flex-shrink-0" />
                 Add to cart
               </button>

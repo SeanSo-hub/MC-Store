@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -8,6 +8,12 @@ import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const SearchBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   return (
     <div className="bg-[#1B6392] text-white">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,12 +29,45 @@ const SearchBar = () => {
             <h1 className="text-xl sm:text-2xl font-bold">MC Store</h1>
           </div>
 
+          {/* Mobile Menu */}
           <div className="sm:hidden">
-            <button className="text-white hover:text-[#EBC80C]">
+            <button
+              onClick={toggleMenu}
+              className="text-white hover:text-[#EBC80C]"
+            >
               <MenuIcon />
             </button>
+            <div
+              className={`${
+                menuOpen ? "block" : "hidden"
+              } absolute top-16 left-0 right-0 bg-[#1B6392] p-4 z-10`}
+            >
+              <ul className="space-y-4">
+                <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
+                  <PersonOutlineIcon />
+                  Account
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
+                  <FavoriteBorderIcon />
+                  Wishlist
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
+                  <ShoppingCartOutlinedIcon />
+                  Cart
+                </li>
+              </ul>
+              <div className="relative mt-4">
+                <input
+                  type="text"
+                  placeholder="Search for products..."
+                  className="w-full h-10 pl-4 pr-12 text-[#475156] placeholder-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-[#EBC80C] rounded-lg"
+                />
+                <SearchIcon className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              </div>
+            </div>
           </div>
 
+          {/* Desktop Menu */}
           <div className="hidden sm:flex flex-1 max-w-3xl mx-4">
             <form className="relative flex w-full h-12 rounded-lg overflow-hidden">
               <button

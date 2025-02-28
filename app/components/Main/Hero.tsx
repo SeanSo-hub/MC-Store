@@ -52,9 +52,9 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full md:max-w-[424px] sm:max-w-full h-auto max-h-[520px] md:max-h-[1000px]">
-        <div className="flex bg-[#191C1F] w-full h-full rounded-md">
-          <div className="pl-6 md:my-[40px] lg:my-[46px]">
+      <div className="flex flex-col w-full md:max-w-[424px] sm:max-w-full h-auto sm:max-h-[520px]">
+        <div className="flex flex-col sm:flex-row bg-[#191C1F] w-full h-full rounded-md justify-between">
+          <div className="flex flex-col justify-center my-[40px] m-10">
             <h1 className="uppercase mb-1 text-sm md:text-[13px] lg:text-[14px] text-[#EBC80C]">
               summer sales
             </h1>
@@ -65,19 +65,19 @@ function Hero() {
               Shop now <ArrowForwardIcon />
             </button>
           </div>
-          <div className="flex flex-col justify-end items-end min-w-[200px] h-full">
-            <div className="bg-[#EBC80C] flex justify-center items-center w-20 md:w-24 h-8 md:h-10 rounded-md mr-6 mb-6">
+          <div className="flex flex-col items-end justify-between h-full">
+            <div className="bg-[#EBC80C] flex justify-center items-center w-20 md:w-24 h-8 md:h-10 rounded-md mr-6 mt-6">
               <h1 className="uppercase font-semibold text-sm md:text-base">
                 29% off
               </h1>
             </div>
-            <div>
+            <div className="">
               <Image
                 src={Pixel6}
                 alt="Pixel"
                 width={312}
                 height={312}
-                className="w-full h-full flex-shrink-0"
+                className="flex-shrink-0 w-100% h-100%"
               />
             </div>
           </div>
@@ -92,14 +92,14 @@ function Hero() {
               className="w-100% h-100%"
             />
           </div>
-          <div className="flex flex-col my-6 w-full md:w-[160px] lg:w-[172px]">
+          <div className="flex flex-col my-6 w-full md:w-[160px] lg:w-[172px] m-2">
             <h1 className="text-lg md:text-xl lg:text-2xl mb-3">
               Xiaomi FlipBuds Pro
             </h1>
             <h1 className="text-[#2DA5F3] font-semibold text-md md:text-lg lg:text-[18px] mb-4">
               $299 USD
             </h1>
-            <button className="uppercase text-sm font-semibold text-white py-3 w-full md:w-[150px] lg:w-[156px] h-12 bg-[#FA8232] rounded-md">
+            <button className="uppercase text-sm font-semibold text-white w-full md:w-[150px] lg:w-[156px] h-12 bg-[#FA8232] rounded-md">
               Shop now <ArrowForwardIcon />
             </button>
           </div>

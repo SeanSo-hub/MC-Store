@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -9,10 +9,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const SearchBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+  const toggleState = useCallback(
+    (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+      setter((prev) => !prev);
+    },
+    []
+  );
 
   return (
     <div className="bg-[#1B6392] text-white">
@@ -32,7 +36,7 @@ const SearchBar = () => {
           {/* Mobile Menu */}
           <div className="sm:hidden">
             <button
-              onClick={toggleMenu}
+              onClick={() => toggleState(setMenuOpen)}
               className="text-white hover:text-[#EBC80C]"
             >
               <MenuIcon />
@@ -89,10 +93,61 @@ const SearchBar = () => {
           </div>
 
           <div className="hidden sm:flex items-center gap-4 lg:gap-6">
-            <button className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors">
+            <button
+              onClick={() => toggleState(setOpenLogin)}
+              className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors"
+            >
               <PersonOutlineIcon className="w-6 h-6" />
               <span className="text-xs mt-1">Account</span>
             </button>
+
+            <div
+              id="loginDropdown"
+              className={`absolute top-[190px] sm:right-0 md:right-[100px] lg:right-[130px] mt-2 min-w-[280px] sm:min-w-[424px] bg-white text-black rounded-sm border shadow-lg transition-all duration-300 ${
+                openLogin
+                  ? "opacity-100 scale-100 visible"
+                  : "opacity-0 scale-95 invisible"
+              }`}
+            >
+              {openLogin && (
+                <div className="flex flex-col gap-4 justify-center items-center m-8">
+                  <h1 className="font-semibold">Sign in to your account</h1>
+                  <div className="w-full">
+                    <h1 className="text-sm">Email address</h1>
+                    <input
+                      className="rounded-sm outline outline-1 p-2 w-full"
+                      type="email"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <div className="flex justify-between">
+                      <h1 className="text-sm">Password</h1>
+                      <a
+                        href="#"
+                        className="text-sm text-blue-400 font-semibold"
+                      >
+                        Forget Password?
+                      </a>
+                    </div>
+
+                    <input
+                      className="rounded-sm outline outline-1 p-2 w-full"
+                      type="password"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                  <button className="bg-[#FA8232] text-white px-6 py-3 rounded-md text-sm font-bold w-full">
+                    Login
+                  </button>
+                  <p>Dont have an account?</p>
+                  <button className="outline outline-1 outline-[#FA8232] px-6 py-3 rounded-md text-sm font-bold w-full">
+                    Create an account
+                  </button>
+                </div>
+              )}
+            </div>
+
             <button className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors">
               <FavoriteBorderIcon className="w-6 h-6" />
               <span className="text-xs mt-1">Wishlist</span>

@@ -6,10 +6,97 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useAuth } from "../../context/Auth";
 
-const SearchBar = () => {
+interface LoginFormProps {
+  onSubmit: (email: string, password: string) => Promise<void>;
+  loading: boolean;
+  error?: string;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading, error }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await onSubmit(email, password);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-4 justify-center items-center m-8">
+        <h1 className="font-semibold">Sign in to your account</h1>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <div className="w-full">
+          <h1 className="text-sm">Email address</h1>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="rounded-sm outline outline-1 p-2 w-full"
+            type="email"
+            required
+          />
+        </div>
+        <div className="w-full">
+          <div className="flex justify-between">
+            <h1 className="text-sm">Password</h1>
+            <a href="#" className="text-sm text-blue-400 font-semibold">
+              Forget Password?
+            </a>
+          </div>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="rounded-sm outline outline-1 p-2 w-full"
+            type="password"
+            required
+            minLength={6}
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-[#FA8232] text-white px-6 py-3 rounded-md text-sm font-bold w-full disabled:opacity-50"
+        >
+          {loading ? "Loading..." : "Login"}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+const SearchBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
+  const { session, signUpNewUser, signOut } = useAuth();
+  console.log(session);
+
+  const handleSignup = async (email: string, password: string) => {
+    setLoading(true);
+    setError("");
+    
+    try {
+      const result = await signUpNewUser(email, password);
+      if (result.success) {
+        setOpenLogin(false);
+      } else {
+        setError(result.error || "Failed to create account");
+      }
+    } catch (error) {
+      setError("An unexpected error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignOut = () => {
+    signOut();
+  };
 
   const toggleState = useCallback(
     (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
@@ -49,7 +136,7 @@ const SearchBar = () => {
               <ul className="space-y-4">
                 <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
                   <PersonOutlineIcon />
-                  Account
+                  {session?.user?.email || "Account"}
                 </li>
                 <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
                   <FavoriteBorderIcon />
@@ -59,6 +146,17 @@ const SearchBar = () => {
                   <ShoppingCartOutlinedIcon />
                   Cart
                 </li>
+                {session?.user && (
+                  <li className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors">
+                    <button
+                      onClick={handleSignOut}
+                      className="flex items-center gap-2 hover:text-[#EBC80C] transition-colors"
+                    >
+                      <LogoutIcon />
+                      SignOut
+                    </button>
+                  </li>
+                )}
               </ul>
               <div className="relative mt-4">
                 <input
@@ -93,57 +191,34 @@ const SearchBar = () => {
           </div>
 
           <div className="hidden sm:flex items-center gap-4 lg:gap-6">
-            <button
-              onClick={() => toggleState(setOpenLogin)}
-              className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors"
-            >
-              <PersonOutlineIcon className="w-6 h-6" />
-              <span className="text-xs mt-1">Account</span>
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => !session?.user && toggleState(setOpenLogin)} // Only toggle if no user is logged in
+                className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors"
+              >
+                <PersonOutlineIcon className="w-6 h-6" />
+                <span className="text-xs mt-1">
+                  {session?.user?.email || "Account"}
+                </span>
+              </button>
 
-            <div
-              id="loginDropdown"
-              className={`absolute top-[190px] sm:right-0 md:right-[100px] lg:right-[130px] mt-2 min-w-[280px] sm:min-w-[424px] bg-white text-black rounded-sm border shadow-lg transition-all duration-300 ${
-                openLogin
-                  ? "opacity-100 scale-100 visible"
-                  : "opacity-0 scale-95 invisible"
-              }`}
-            >
-              {openLogin && (
-                <div className="flex flex-col gap-4 justify-center items-center m-8">
-                  <h1 className="font-semibold">Sign in to your account</h1>
-                  <div className="w-full">
-                    <h1 className="text-sm">Email address</h1>
-                    <input
-                      className="rounded-sm outline outline-1 p-2 w-full"
-                      type="email"
+              {/* Show login form only if no user is logged in */}
+              {!session?.user && (
+                <div
+                  id="loginDropdown"
+                  className={`absolute top-12 right-0 mt-2 min-w-[280px] sm:min-w-[424px] bg-white text-black rounded-sm border shadow-lg transition-all duration-300 ${
+                    openLogin
+                      ? "opacity-100 scale-100 visible"
+                      : "opacity-0 scale-95 invisible"
+                  }`}
+                >
+                  {openLogin && (
+                    <LoginForm
+                      onSubmit={handleSignup}
+                      loading={loading}
+                      error={error}
                     />
-                  </div>
-                  <div className="w-full">
-                    <div className="flex justify-between">
-                      <h1 className="text-sm">Password</h1>
-                      <a
-                        href="#"
-                        className="text-sm text-blue-400 font-semibold"
-                      >
-                        Forget Password?
-                      </a>
-                    </div>
-
-                    <input
-                      className="rounded-sm outline outline-1 p-2 w-full"
-                      type="password"
-                      name=""
-                      id=""
-                    />
-                  </div>
-                  <button className="bg-[#FA8232] text-white px-6 py-3 rounded-md text-sm font-bold w-full">
-                    Login
-                  </button>
-                  <p>Dont have an account?</p>
-                  <button className="outline outline-1 outline-[#FA8232] px-6 py-3 rounded-md text-sm font-bold w-full">
-                    Create an account
-                  </button>
+                  )}
                 </div>
               )}
             </div>
@@ -161,6 +236,16 @@ const SearchBar = () => {
               </div>
               <span className="text-xs mt-1">Cart</span>
             </button>
+
+            {session?.user && (
+              <button
+                onClick={handleSignOut}
+                className="flex flex-col items-center text-white hover:text-[#EBC80C] transition-colors"
+              >
+                <LogoutIcon />
+                <span className="text-xs mt-1">Sign out</span>
+              </button>
+            )}
           </div>
         </div>
       </nav>

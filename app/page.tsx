@@ -4,11 +4,12 @@ import Feature from "./components/Main/Feature";
 import Deals from "./components/Main/Deals";
 import Newsletter from "./components/Main/Newsletter";
 import Footer from "./components/Footer/Footer";
+import { AuthContextProvider } from "./context/Auth";
 
 export default function index() {
   return (
-    <div>
-      <main>
+    <AuthContextProvider>
+      <div>
         <header>
           <NavBar />
         </header>
@@ -19,7 +20,7 @@ export default function index() {
           <Newsletter />
           <Footer />
         </main>
-      </main>
-    </div>
+      </div>
+    </AuthContextProvider>
   );
 }

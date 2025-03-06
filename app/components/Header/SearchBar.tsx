@@ -10,7 +10,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuth } from "../../context/Auth";
 
 interface LoginFormProps {
-  onSubmit: (email: string, password: string) => Promise<void>;
+  onSubmit: (
+    username: string,
+    email: string,
+    password: string
+  ) => Promise<void>;
   loading: boolean;
   error?: string;
 }
@@ -18,17 +22,30 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading, error }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await onSubmit(email, password);
+    await onSubmit(username, email, password);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4 justify-center items-center m-8">
-        <h1 className="font-semibold">Sign in to your account</h1>
+        <h1 className="font-semibold">Sign up</h1>
         {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        <div className="w-full">
+          <h1 className="text-sm">Username</h1>
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="rounded-sm outline outline-1 p-2 w-full"
+            type="text"
+            required
+          />
+        </div>
+
         <div className="w-full">
           <h1 className="text-sm">Email address</h1>
           <input
@@ -74,12 +91,15 @@ const SearchBar: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const { session, signUpNewUser, signOut } = useAuth();
-  console.log(session);
 
-  const handleSignup = async (email: string, password: string) => {
+  const handleSignup = async (
+    username: string,
+    email: string,
+    password: string
+  ) => {
     setLoading(true);
     setError("");
-    
+
     try {
       const result = await signUpNewUser(email, password);
       if (result.success) {
@@ -87,7 +107,7 @@ const SearchBar: React.FC = () => {
       } else {
         setError(result.error || "Failed to create account");
       }
-    } catch (error) {
+    } catch {
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);

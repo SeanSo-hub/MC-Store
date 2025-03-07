@@ -53,7 +53,7 @@ function Hero() {
         </div>
       </div>
       <div className="flex flex-col w-full md:max-w-[424px] sm:max-w-full h-auto sm:max-h-[520px]">
-        <div className="flex flex-col sm:flex-row bg-[#191C1F] w-full h-full rounded-md justify-between">
+        <div className="flex flex-col sm:flex-row bg-[#191C1F] w-full h-full rounded-md justify-between overflow-hidden">
           <div className="flex flex-col justify-center my-[40px] m-10">
             <h1 className="uppercase mb-1 text-sm md:text-[13px] lg:text-[14px] text-[#EBC80C]">
               summer sales
@@ -71,13 +71,13 @@ function Hero() {
                 29% off
               </h1>
             </div>
-            <div className="">
+            <div>
               <Image
                 src={Pixel6}
                 alt="Pixel"
                 width={312}
                 height={312}
-                className="flex-shrink-0 w-100% h-100%"
+                className="flex-shrink-0 w-100% h-100% "
               />
             </div>
           </div>
